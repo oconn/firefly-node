@@ -1,35 +1,53 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var User = require('./app/models/user');
-var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var database = require('./config/database');
-var mongoose = require('mongoose');
-var routes = require('./app/routes')
+var express = require('express'),
+    path = require('path'),
+    passport = require('passport'),
+    bodyParser = require('body-parser'),
+    User = require('./app/models/user'),
+    favicon = require('static-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    database = require('./config/database'),
+    mongoose = require('mongoose'),
+    // seeder = require('./config/seed'),
+    routes = require('./app/routes');
 
+
+// Connect to mongodb and run the seed file
 mongoose.connect(database.url);
 mongoose.connection.on('open', function() {
   console.log("Connected to Mongoose...");
   // seeder.check();
 });
 
+
+// Configure passport. User authentication
+// and session persistence
+require('./config/passport')(passport);
+
+
 var app = express();
 
-app.set('views', path.join(__dirname, 'app/views'));
-// app.set('view engine', 'jade');
 
+// Set up the view engine
+app.set('views', path.join(__dirname, 'app/views'));
+app.set('view engine', 'jade');
+
+
+// Middleware
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-// app.use(require('node-compass')({mode: 'expanded'}));
+app.use(require('node-compass')({mode: 'expanded'}));
 app.use('/', express.static(path.join(__dirname, 'public')));
 
+
+// Passport Middleware
+
+
+// Initialize Routes
 routes(app);
 
-var port = process.env.PORT || 8080;
-app.listen(port);
-console.log("App started on port " + port);
+
+module.exports = app;
