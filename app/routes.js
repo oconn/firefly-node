@@ -1,6 +1,8 @@
 var usersController = require('./controllers/users');
+var staticPagesController = require('./controllers/staticPages')
 
 module.exports = function(app) {
+    app.get('/', staticPagesController.index);
 
     // ************ API ************** //
     app.get('/api/users', usersController.getUsers);
