@@ -44,10 +44,16 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 
 
 // Passport Middleware
+app.use(session({
+  secret: "secret", 
+  cookie: {secure: false}
+}));
+app.use(passport.initialize()); 
+app.use(passport.session()); 
 
 
 // Initialize Routes
-routes(app);
+routes(app, passport);
 
 
 module.exports = app;
