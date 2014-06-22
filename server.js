@@ -8,6 +8,7 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     database = require('./config/database'),
     mongoose = require('mongoose'),
+    session = require('express-session'),
     // seeder = require('./config/seed'),
     routes = require('./app/routes');
 
