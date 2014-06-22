@@ -27,7 +27,7 @@ define([
             var formData = {
                 email: this.$el.find("#email").val(),
                 password: this.$el.find("#password").val(),
-                password_confirmation: this.$el.find("#password_confirmation").val(),
+                password_confirmation: this.$el.find("#password_confirmation").val()
             };
 
             if (formData.password === formData.password_confirmation) {
@@ -38,19 +38,17 @@ define([
                     dataType: "JSON",
                     data: formData,
                     success: function(data) {
-                        console.log(data);
+
                     },
                     error: function(error) {
-                        console.log(error);
+
                     }
                 });
 
             } else {
-            
-                console.log("Passwords Do not match")
+                // TODO 
+                // Notify user passwords do not match
             }
-
-
         }
     });
 

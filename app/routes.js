@@ -2,7 +2,7 @@ var usersController = require('./controllers/users');
 var staticPagesController = require('./controllers/staticPages');
 var authentication = require('./controllers/authentication');
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
     app.get('/', staticPagesController.index);
 
     // ************ API ************** //
@@ -14,6 +14,7 @@ module.exports = function(app) {
 
     // ************* AUTH ************ //
 
-    app.post('/api/auth')
-          
+    app.get('/api/auth', authentication.isLoggedIn);
+
+    
 }

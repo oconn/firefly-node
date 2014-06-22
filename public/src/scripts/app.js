@@ -24,10 +24,34 @@ define([
                     mainView: "#app-wrapper"
                 });
 
-                this.mainView.show(new SessionLayout());
+                // Checks if user is already logged in
+                
+                this.isLoggedIn(function(user){
+                    if (user) {
+                        this.mainView.show(new AppLayout());
+                    } else {
+                        this.mainView.show(new SessionLayout());
+                    }
+                });
             });
 
             this.start();
+        },
+
+        isLoggedIn: function(callback) {
+            var url = 'api/auth';
+            var that = this;
+            $.ajax({
+                method: "GET",
+                url: url,
+                success: function(data, req, res) {
+                    callback(data);
+                },
+                error: function(res, status, error) {
+                    callback({user: false});
+                }
+            });
+            return true;
         }
 
     });

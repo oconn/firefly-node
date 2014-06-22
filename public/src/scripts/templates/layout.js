@@ -6,7 +6,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<h1>Login</h1>\n\n<form id=\"login-form\">\n    <label for=\"email\">Email</label>\n    <input type=\"text\" name=\"email\" id=\"email\" /><br>\n    <label for=\"password\">Password</label>\n    <input type=\"password\" name=\"password\" id=\"password\" />\n    <input type=\"submit\" value=\"Login\">\n</form>";
+  return "<h1>Welcome!</h1>";
   })
 
 });
