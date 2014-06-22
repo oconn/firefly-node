@@ -15,6 +15,6 @@ module.exports = function(app, passport) {
     // ************* AUTH ************ //
 
     app.get('/api/auth', authentication.isLoggedIn);
-
+    app.post('/api/auth/signup', authentication.signUp)
     
 }

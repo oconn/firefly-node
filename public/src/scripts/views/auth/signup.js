@@ -38,7 +38,7 @@ define([
                     dataType: "JSON",
                     data: formData,
                     success: function(data) {
-
+                        console.log(data);
                     },
                     error: function(error) {
 

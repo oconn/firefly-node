@@ -18,19 +18,19 @@ define([
     var App = Backbone.Marionette.Application.extend({
 
         initialize: function(){
+            var self = this;
             
             this.addInitializer(function(){
                 this.addRegions({
                     mainView: "#app-wrapper"
                 });
 
-                // Checks if user is already logged in
-                
+                // Checks if user is already logged in on init
                 this.isLoggedIn(function(user){
                     if (user) {
-                        this.mainView.show(new AppLayout());
+                        self.mainView.show(new AppLayout());
                     } else {
-                        this.mainView.show(new SessionLayout());
+                        self.mainView.show(new SessionLayout());
                     }
                 });
             });
@@ -45,10 +45,10 @@ define([
                 method: "GET",
                 url: url,
                 success: function(data, req, res) {
-                    callback(data);
+                    callback(data.user);
                 },
                 error: function(res, status, error) {
-                    callback({user: false});
+                    callback(false);
                 }
             });
             return true;
