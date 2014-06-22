@@ -6,7 +6,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<h1>Test!</h1>";
+  return "<div id=\"session-form\"></div>";
   })
 
 });

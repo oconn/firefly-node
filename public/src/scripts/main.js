@@ -1,11 +1,11 @@
 require.config({
     paths: {
-        'jquery': '../../packages/jquery/dist/jquery',
-        'backbone': '../../packages/backbone/backbone',
-        'underscore': '../../packages/underscore/underscore',
-        'marionette': '../../packages/marionette/lib/core/backbone.marionette',
-        'backbone.wreqr': '../../packages/backbone.wreqr/lib/backbone.wreqr',
-        'backbone.babysitter': '../../packages/backbone.babysitter/lib/backbone.babysitter',
+        'jquery': '../../../packages/jquery/dist/jquery',
+        'backbone': '../../../packages/backbone/backbone',
+        'underscore': '../../../packages/underscore/underscore',
+        'marionette': '../../../packages/marionette/lib/core/backbone.marionette',
+        'backbone.wreqr': '../../../packages/backbone.wreqr/lib/backbone.wreqr',
+        'backbone.babysitter': '../../../packages/backbone.babysitter/lib/backbone.babysitter',
         'handlebars':  './config/handlebars'
     },
     shim: {

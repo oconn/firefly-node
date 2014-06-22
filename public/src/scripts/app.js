@@ -3,13 +3,15 @@ define([
     'underscore',
     'backbone', 
     'marionette',
-    'views/app_layout'
+    'views/app_layout',
+    'views/auth/session'
 ], function( 
     $,
     _,
     Backbone,
     Marionette,
-    AppLayout
+    AppLayout,
+    SessionLayout
 ) {
     'use strict';
 
@@ -22,7 +24,7 @@ define([
                     mainView: "#app-wrapper"
                 });
 
-                this.mainView.show(new AppLayout());
+                this.mainView.show(new SessionLayout());
             });
 
             this.start();

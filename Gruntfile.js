@@ -45,9 +45,9 @@ module.exports = function (grunt) {
             },
             all: [
                 'Gruntfile.js',
-                'public/scripts/**/*.js',
-                '!public/scripts/templates/**/*.js',
-                '!public/scripts/config/handlebars.js'
+                'public/src/scripts/**/*.js',
+                '!public/src/scripts/config/handlebars.js',
+                '!public/src/scripts/templates/**/*.js'
             ]
         },
 
@@ -86,18 +86,25 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: 'templates/',
                 src: '**/*.hbs',
-                dest: 'public/scripts/templates/',
+                dest: 'public/src/scripts/templates/',
                 ext: '.js'
             }
+        },
+        compass: {
+            options: {
+                cssDir: 'public/src/sass/stylesheets',
+                sassDir: 'public/src/stylesheets/',
+                require: ['sass-css-importer', 'susy']
+            }
         }
-
     });
 
     // Load npm tasks.
     grunt.util._.each([
         'contrib-jshint',
         'contrib-watch',
-        'contrib-handlebars'
+        'contrib-handlebars',
+        'contrib-compass'
     ], function (tasks) {
         grunt.loadNpmTasks('grunt-' + tasks);
     });
