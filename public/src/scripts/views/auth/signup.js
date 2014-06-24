@@ -17,10 +17,10 @@ define([
         template: template,
 
         events: {
-            'submit #login-form': 'login'
+            'submit #signup-form': 'signup'
         },
 
-        login: function(e) {
+        signup: function(e) {
             e.preventDefault();
         
             var url = 'api/auth/signup';
@@ -38,7 +38,11 @@ define([
                     dataType: "JSON",
                     data: formData,
                     success: function(data) {
-                        console.log(data);
+                        if(data.success) {
+
+                        } else {
+                            
+                        }
                     },
                     error: function(error) {
 

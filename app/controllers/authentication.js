@@ -25,10 +25,17 @@ module.exports = {
 
                     newUser = new User(user);
                     newUser.save(function(err){
-                        if (err) 
+                        if (err) {
                             console.log(err);
+                            if (err.code === 11000) {
+                                res.json({error: "Email has already been taken."});
+                            } else {
+                                res.json({error: "Error..."});
+                            }
+                        } else {
+                            res.json({success: newUser.email + " saved."});
+                        }
 
-                        res.json({message: newUser.email + " saved."});
                     });
                 });
             });
