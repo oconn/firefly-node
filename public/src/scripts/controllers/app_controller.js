@@ -24,20 +24,21 @@ define([
         },
 
         showLogin: function() {
-            console.log("Show Login");
+            console.log("Showing Login")
         },
 
         isLoggedIn: function(callback) {
-            var url = 'api/auth';
             var that = this;
+
+            var url = 'api/auth';
             $.ajax({
                 method: "GET",
                 url: url,
                 success: function(data, req, res) {
-                    callback(data.user);
+
                 },
                 error: function(res, status, error) {
-                    callback(false);
+
                 }
             });
             return true;

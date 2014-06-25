@@ -5,6 +5,7 @@ define([
     'marionette',
     'views/app_layout',
     'views/auth/session',
+    'routers/router',
     'controllers/app_controller'
 ], function( 
     $,
@@ -13,20 +14,10 @@ define([
     Marionette,
     AppLayout,
     SessionLayout,
+    AppRouter,
     AppController
 ) {
     'use strict';
-
-    var AppRouter = Backbone.Marionette.AppRouter.extend({
-        // "someMethod" must exist at controller.someMethod
-
-        controller: new AppController(),
-
-        appRoutes: {
-            "": "showApp",
-            "login": "showLogin"
-        }
-    });
 
     var App = Backbone.Marionette.Application.extend({
 
@@ -39,7 +30,7 @@ define([
             });
 
             this.addInitializer(function() {
-                new AppRouter();
+                new AppRouter({controller: new AppController()});
                 Backbone.history.start();
             });
 
