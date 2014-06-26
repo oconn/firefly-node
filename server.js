@@ -11,7 +11,9 @@ var express = require('express'),
     csrf = require('csurf'),
     session = require('express-session'),
     // seeder = require('./config/seed'),
-    routes = require('./app/routes');
+    routes = require('./app/routes'),
+    passport = require('passport'),  
+    flash = require('connect-flash');
 
 // Connect to mongodb and run the seed file
 mongoose.connect(database.url);
@@ -20,6 +22,8 @@ mongoose.connection.on('open', function() {
   // seeder.check();
 });
 
+require('./config/passport')(passport);
+
 var app = express();
 
 // Set up the view engine
@@ -27,21 +31,21 @@ app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
 
 // Middleware
-app.use(favicon());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
 app.use(require('node-compass')({mode: 'expanded'}));
 app.use('/', express.static(path.join(__dirname, 'public/src')));
-
-
+app.use(favicon());
+app.use(logger('dev'));
+app.use(cookieParser());
+app.use(bodyParser());
 app.use(session({
   secret: "secret", 
   cookie: {secure: false}
 }));
+app.use(passport.initialize());
+app.use(passport.session()); 
+app.use(flash()); 
 
 // Initialize Routes
-routes(app);
+routes(app, passport);
 
 module.exports = app;

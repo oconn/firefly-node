@@ -19,29 +19,8 @@ define([
 
         },
 
-        showApp: function() {
-            this.isLoggedIn();
-        },
-
-        showLogin: function() {
-            console.log("Showing Login")
-        },
-
-        isLoggedIn: function(callback) {
-            var that = this;
-
-            var url = 'api/auth';
-            $.ajax({
-                method: "GET",
-                url: url,
-                success: function(data, req, res) {
-
-                },
-                error: function(res, status, error) {
-
-                }
-            });
-            return true;
+        index: function() {
+            console.log("Test")
         }
     });
 
