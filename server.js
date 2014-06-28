@@ -7,7 +7,6 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     database = require('./config/database'),
     mongoose = require('mongoose'),
-    bcrypt = require("bcrypt"),
     csrf = require('csurf'),
     session = require('express-session'),
     // seeder = require('./config/seed'),
@@ -31,8 +30,7 @@ app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
 
 // Middleware
-app.use(require('node-compass')({mode: 'expanded'}));
-app.use('/', express.static(path.join(__dirname, 'public/src')));
+app.use('/', express.static(path.join(__dirname, 'front')));
 app.use(favicon());
 app.use(logger('dev'));
 app.use(cookieParser());

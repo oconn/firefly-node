@@ -19,4 +19,29 @@ module.exports = function(app, passport) {
         failureRedirect : '/login',
         failureFlash : true 
     }));    
+
+    // process the login form
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+
+    function isLoggedIn(req, res, next) {
+
+      // if user is authenticated in the session, carry on 
+      if (req.isAuthenticated())
+        return next();
+
+      // if they aren't redirect them to the home page
+      req.flash('error', 'You are not permitted to view this page');
+      res.redirect('/#/login');
+    }
+
+    function isAdmin(req, res, next) {
+      if (req.isAuthenticated() && req.user.local.admin)
+        return next();
+      
+      res.redirect('/login');
+    }
 }
