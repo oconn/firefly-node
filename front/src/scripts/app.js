@@ -32,14 +32,14 @@ define([
             });
 
             this.addRegions({
-                mainView: "#app-wrapper"
+                wrapper: "#app-wrapper"
             });
 
             // check if admin
             if (false) {
-                this.mainView.show(new UserLayout());
+                this.wrapper.show(new UserLayout());
             } else {
-                this.mainView.show(new GuestLayout());
+                this.wrapper.show(new GuestLayout());
             }
 
             this.start();

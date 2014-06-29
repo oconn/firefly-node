@@ -1,16 +1,30 @@
 var usersController = require('./controllers/users');
+var postsController = require('./controllers/posts');
+
 var staticPagesController = require('./controllers/staticPages');
 var authentication = require('./controllers/authentication');
 
 module.exports = function(app, passport) {
     app.get('/', staticPagesController.index);
 
-    // ************ API ************** //
+    //*********************************//
+    //************* API ***************//
+    //*********************************//
+
+    //************* USERS *************//
     app.get('/api/users', usersController.getUsers);
     app.post('/api/users', usersController.addUser);
     app.get('/api/users/:user_id', usersController.getUser);
     app.put('/api/users/:user_id', usersController.updateUser);
-    app.delete('/api/users/:user_id', usersController.deleteUser);  
+    app.del('/api/users/:user_id', usersController.deleteUser);  
+
+    //************* POSTS *************//
+    app.get('/api/posts', postsController.getPosts);
+    app.post('/api/posts', postsController.addPost);
+    app.get('/api/posts/:post_id', postsController.getPost);
+    app.put('/api/posts/:post_id', postsController.updatePost);
+    app.del('/api/posts/:post_id', postsController.deletePost); 
+
 
     // ************* AUTH ************ //
 
@@ -30,8 +44,9 @@ module.exports = function(app, passport) {
     function isLoggedIn(req, res, next) {
 
       // if user is authenticated in the session, carry on 
-      if (req.isAuthenticated())
+      if (req.isAuthenticated()) {
         return next();
+      }
 
       // if they aren't redirect them to the home page
       req.flash('error', 'You are not permitted to view this page');
@@ -39,9 +54,10 @@ module.exports = function(app, passport) {
     }
 
     function isAdmin(req, res, next) {
-      if (req.isAuthenticated() && req.user.local.admin)
+      if (req.isAuthenticated() && req.user.local.admin) {
         return next();
-      
+      }
+
       res.redirect('/login');
     }
-}
+};

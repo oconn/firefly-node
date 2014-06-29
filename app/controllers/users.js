@@ -3,8 +3,10 @@ var User = require('../models/user');
 module.exports =  {
     getUsers: function(req, res) {
         User.find(function(err, users) {
-            if (err)
-                res.send(err);
+            if (err) {
+                res.json({error: err});
+                return;
+            }
 
             res.json(users);
         });
@@ -16,8 +18,10 @@ module.exports =  {
         user.email = req.body.email;
 
         user.save(function(err) {
-            if (err)
-                res.send(err);
+            if (err) {
+                res.json({error: err});
+                return;
+            }
 
             res.json({user: user, message: "User Created"});
         });
@@ -25,8 +29,10 @@ module.exports =  {
 
     getUser: function(req, res) {
         User.findById(req.params.user_id, function(err, user) {
-            if (err)
-                res.send(err);
+            if (err) {
+                res.json({error: err});
+                return;
+            }
 
             res.json(user);
         }); 
@@ -34,15 +40,19 @@ module.exports =  {
 
     updateUser: function(req, res) {
         User.findById(req.params.user_id, function(err, user) {
-            if (err)
-                res.send(err);
+            if (err) {
+                res.json({error: err});
+                return;
+            }
 
             user.name = req.body.name;
             user.email = req.body.email;
 
             user.save(function(err) {
-                if (err)
-                    res.send(err);
+                if (err) {
+                    res.json({error: err});
+                    return;
+                }
 
                 res.json({user: user, message: "User Updated"});
             });
@@ -53,8 +63,10 @@ module.exports =  {
         User.remove({
             _id: req.params.user_id
         }, function(err, user) {
-            if (err)
-                res.send(err);
+            if (err) {
+                res.json({error: err});
+                return;
+            }
 
             res.json({user: user, message: "User Deleted"});
         });

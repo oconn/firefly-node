@@ -3,13 +3,18 @@ define([
     'underscore',
     'backbone',
     'marionette',
-    'templates/auth/login'
+    'state',
+    // Views,
+    'views/home/index',
+    'views/blog/index'
 ], function(
     $,
     _,
     Backbone,
     Marionette,
-    template
+    state,
+    HomeView,
+    BlogView
 ) {
     "use strict";
 
@@ -20,7 +25,11 @@ define([
         },
 
         index: function() {
-            
+            state.vent.trigger('show:main', new HomeView());
+        },
+
+        blog: function() {
+            state.vent.trigger('show:main', new BlogView());
         }
     });
 

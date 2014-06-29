@@ -105,6 +105,7 @@ module.exports = function (grunt) {
             },
             all: [
                 'Gruntfile.js',
+                'app/**/*.js',
                 'front/src/scripts/**/*.js',
                 'test/spec/**/*.js',
                 'utils/**/*.js',
@@ -419,8 +420,8 @@ module.exports = function (grunt) {
 
     // Register local tasks.
     grunt.registerTask('templates', [
-        'handlebars:compile',
-        'concat:handlebars'
+        'handlebars:compile'
+        // 'concat:handlebars'
     ]);
 
     grunt.registerTask('test', ['connect:test', 'templates', 'jasmine']);
