@@ -12,10 +12,14 @@ define([
     'use strict';
 
     var AppRouter = Backbone.Marionette.AppRouter.extend({
-        
         appRoutes: {
-            "": "index",
-            "blog": "blog"
+             "": "index",
+            "blog": "blog",
+            "new_post": "newPost"
+        },
+        
+        initialize: function(options) {
+            
         }
     });
 

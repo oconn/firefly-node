@@ -17,8 +17,8 @@ module.exports = {
         post.title = req.body.title;
         post.description = req.body.description;
         post.body = req.body.body;
-        post.createdAt = req.body.createAt;
-        post.updatedAt = req.body.updatedAt;
+        post.createdAt = Date.now();
+        post.updatedAt = Date.now();
         
         post.save(function(err) {
             if (err) {

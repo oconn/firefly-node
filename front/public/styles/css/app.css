@@ -432,7 +432,31 @@ table {
   position: absolute;
   right: 0px;
 }
-.inline-links a {
+.inline-links ul {
+  margin: 0px;
+  list-style: none;
+}
+.inline-links ul li {
+  float: left;
+  display: inline;
+}
+.inline-links ul li:hover ul {
+  display: block;
+}
+.inline-links ul li ul {
+  position: absolute;
+  padding-left: 0px;
+  background-color: #9ca3a3;
+  display: none;
+}
+.inline-links ul li ul li {
+  float: inherit;
+  display: block;
+}
+.inline-links ul li ul li a {
+  line-height: 50px;
+}
+.inline-links ul a {
   padding: 0px 20px;
   line-height: 100px;
 }
