@@ -1,0 +1,27 @@
+$navbar-height: 100px;
+    
+#top-nav {
+    background-color: $light-gray;
+    height: $navbar-height;
+}
+
+#brand {
+    display: inline-table;
+    position: absolute;
+    left: 0px;
+    a {
+        font-size: 20px;
+        padding: 0px 20px;
+        line-height: $navbar-height;
+    }
+}
+
+.inline-links {
+    display: inline-table;
+    position: absolute;
+    right: 0px;
+    a {
+        padding: 0px 20px;
+        line-height: $navbar-height;
+    }
+}
