@@ -14,6 +14,11 @@ define([
     var PostsCollection = Backbone.Collection.extend({
         url: '/api/posts',
 
+        comparator: function(post) {
+            var date = new Date(post.get("createdAt"));
+            return -date;
+        },
+
         initialize: function() {
 
         }

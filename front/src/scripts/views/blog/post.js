@@ -16,7 +16,15 @@ define([
     var PostItemView = Marionette.ItemView.extend({
         template: template,
 
+        events: {
+            'click .delete': 'removePost'
+        },
+
         initialize: function() {
+            
+        },
+
+        removePost: function(e) {
             
         }
     });

@@ -1,3 +1,6 @@
-<form action="" method="">
-    <input type="text" name="title" placeholder="Title" value="{{title}}">
+<form id="post-form" action="/api/posts" method="POST">
+    <input type="text" id="title" name="title" placeholder="Title" value="{{title}}" /><br>
+    <textarea name="description" id="description" cols="30" rows="10"></textarea><br>
+    <textarea name="body" id="body" cols="30" rows="10"></textarea><br>
+    <input type="submit">
 </form>

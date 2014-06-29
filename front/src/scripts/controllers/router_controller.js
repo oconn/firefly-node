@@ -47,7 +47,7 @@ define([
 
         newPost: function() {
             state.vent.trigger('show:main', new NewPostView({
-
+                collection: new PostsCollection()
             }));
         }
     });
