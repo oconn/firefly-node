@@ -5,9 +5,8 @@ define([
     'marionette',
     'views/auth/session',
     'routers/router',
-    'controllers/app_controller',
-    'views/user_layout',
-    'views/guest_layout'
+    'controllers/router_controller',
+    'views/app_layout'
 ], function( 
     $,
     _,
@@ -15,9 +14,8 @@ define([
     Marionette,
     SessionLayout,
     AppRouter,
-    AppController,
-    UserLayout,
-    GuestLayout
+    RouterController,
+    AppLayout
 ) {
     'use strict';
 
@@ -25,9 +23,10 @@ define([
 
         initialize: function(){
             
-
             this.addInitializer(function() {
-                new AppRouter({controller: new AppController()});
+                new AppRouter({
+                    controller: new RouterController()
+                });
                 Backbone.history.start();
             });
 
@@ -35,12 +34,14 @@ define([
                 wrapper: "#app-wrapper"
             });
 
-            // check if admin
-            if (false) {
-                this.wrapper.show(new UserLayout());
+            // check if user
+            if (true) {
+    
             } else {
-                this.wrapper.show(new GuestLayout());
+
             }
+
+            this.wrapper.show(new AppLayout());
 
             this.start();
         }

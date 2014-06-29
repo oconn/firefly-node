@@ -3,29 +3,27 @@ define([
     'underscore',
     'backbone',
     'marionette',
-    'templates/blog/index'
+    'templates/blog/index',
+    'views/blog/post'
 ], function(
     $,
     _,
     Backbone,
     Marionette,
-    template
+    template,
+    PostItemView
 ) {
     "use strict";
 
-    var BlogItemView = Marionette.ItemView.extend({
-
-    });
-
-    var BlogCollectionView = Marionette.CompositeView.extend({
+    var BlogCompositeView = Marionette.CompositeView.extend({
         template: template,
-        childView: BlogItemView,
+        childView: PostItemView,    
 
         initialize: function() {
-
+            this.collection.fetch();
         }
 
     });
 
-    return BlogCollectionView;
+    return BlogCompositeView;
 });

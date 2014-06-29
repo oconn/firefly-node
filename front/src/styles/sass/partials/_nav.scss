@@ -20,8 +20,36 @@ $navbar-height: 100px;
     display: inline-table;
     position: absolute;
     right: 0px;
-    a {
-        padding: 0px 20px;
-        line-height: $navbar-height;
+    ul {
+        margin: 0px;
+        list-style: none;
+        li {
+            float: left;
+            display: inline;
+            &:hover {
+                ul {
+                    display: block;
+                }
+            }
+            ul {
+                position: absolute;
+                padding-left: 0px;
+                background-color: $light-gray;
+                display: none;  
+                li {
+                    float: inherit;
+                    display: block;
+                    a {
+                        line-height: $navbar-height / 2;
+                    }
+                }
+                // display: none;
+            }
+        }
+        a {
+            padding: 0px 20px;
+            line-height: $navbar-height;
+        }
     }
 }
+

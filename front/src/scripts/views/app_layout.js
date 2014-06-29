@@ -3,7 +3,7 @@ define([
     'underscore',
     'backbone',
     'marionette',
-    'templates/guest_layout',
+    'templates/app_layout',
     'state'
 ], function(
     $,
@@ -15,7 +15,7 @@ define([
 ) {
     "use strict";
 
-    var GuestLayout = Marionette.LayoutView.extend({
+    var AppLayout = Marionette.LayoutView.extend({
         template: template,
 
         regions: {
@@ -32,5 +32,5 @@ define([
 
     });
 
-    return GuestLayout;
+    return AppLayout;
 });
