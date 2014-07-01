@@ -4,14 +4,20 @@ define([
     'backbone',
     'marionette',
     'templates/blog/index',
-    'views/blog/post'
+    'views/blog/post',
+    'state',
+    'views/blog/new',
+    'collections/posts'
 ], function(
     $,
     _,
     Backbone,
     Marionette,
     template,
-    PostItemView
+    PostItemView,
+    state,
+    NewPostView,
+    PostsCollection
 ) {
     "use strict";
 
@@ -21,8 +27,19 @@ define([
 
         initialize: function() {
             this.collection.fetch();
-        }
+        },
 
+        events: {
+            'click .create': 'showNew'
+        },
+
+        showNew: function() {
+            var self = this;
+
+            state.vent.trigger('show:main', new NewPostView({
+                collection: self.collection
+            }));
+        }
     });
 
     return BlogCompositeView;

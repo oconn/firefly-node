@@ -33,6 +33,7 @@ define([
         submit: function(e) {
             e.preventDefault();
             var self = this;
+
             var post = new PostModel({
                 title: this.$el.find("#title").val(),
                 description: this.$el.find("#description").val(),
@@ -41,9 +42,7 @@ define([
             
             post.save();
 
-            state.vent.trigger("show:main", new BlogView({
-                collection: self.collection
-            }));
+            state.vent.trigger();
         }
     });
 

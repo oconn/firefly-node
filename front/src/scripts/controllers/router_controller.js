@@ -29,14 +29,16 @@ define([
 ) {
     "use strict";
 
-    var GuestController = Marionette.Controller.extend({
+    var appController = Marionette.Controller.extend({
 
         initialize: function() {
 
         },
 
         index: function() {
-            state.vent.trigger('show:main', new HomeView());
+            state.vent.trigger('show:main', new HomeView({
+
+            }));
         },
 
         blog: function() {
@@ -52,5 +54,5 @@ define([
         }
     });
 
-    return GuestController;
+    return appController;
 });
