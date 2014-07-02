@@ -4,26 +4,30 @@ define([
     'backbone',
     'marionette',
     'templates/blog/index',
-    'views/blog/post'
+    'views/blog/post',
+    'state',
+    'views/blog/new',
+    'collections/posts'
 ], function(
     $,
     _,
     Backbone,
     Marionette,
     template,
-    PostItemView
+    PostItemView,
+    state,
+    NewPostView,
+    PostsCollection
 ) {
     "use strict";
 
-    var BlogCompositeView = Marionette.CompositeView.extend({
-        template: template,
+    var BlogCollectionView = Marionette.LayoutView.extend({
         childView: PostItemView,    
 
         initialize: function() {
             this.collection.fetch();
-        }
-
+        }    
     });
 
-    return BlogCompositeView;
+    return BlogCollectionView;
 });

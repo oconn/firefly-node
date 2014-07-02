@@ -6,7 +6,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<h1>Firefly Blog</h1>\n\n<button class=\"create\">New Post</button>\n";
+  return "<h1>Firefly Blog</h1>\n\n<button class=\"create\">New Post</button>\n\n<div id='post-list'></div>\n";
   })
 
 });

@@ -18,7 +18,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.body) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.body); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n\n<button class=\"delete\">Delete Post</button>\n";
+    + "</p>\n\n<button class=\"edit\">Edit Post</button>\n<button class=\"delete\">Delete Post</button>\n";
   return buffer;
   })
 
