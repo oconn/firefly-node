@@ -3,18 +3,18 @@ define([
     'underscore',
     'backbone',
     'marionette',
+    'views/blog/index',
     'templates/blog/new',
     'models/post',
-    'views/blog/index',
     'state'
 ], function(
     $,
     _,
     Backbone,
     Marionette,
+    BlogView,
     template,
     PostModel,
-    BlogView,
     state
 ) {
     "use strict";
@@ -23,7 +23,7 @@ define([
         template: template,
 
         initialize: function() {
-
+            console.log(BlogView);
         },
 
         events: {
@@ -41,8 +41,10 @@ define([
             });
             
             post.save();
-
-            state.vent.trigger();
+            console.log(BlogView)
+            state.vent.trigger('show:main', new BlogView({
+                collection: self.collection
+            }));
         }
     });
 

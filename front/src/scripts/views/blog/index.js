@@ -21,26 +21,13 @@ define([
 ) {
     "use strict";
 
-    var BlogCompositeView = Marionette.CompositeView.extend({
-        template: template,
+    var BlogCollectionView = Marionette.LayoutView.extend({
         childView: PostItemView,    
 
         initialize: function() {
             this.collection.fetch();
-        },
-
-        events: {
-            'click .create': 'showNew'
-        },
-
-        showNew: function() {
-            var self = this;
-
-            state.vent.trigger('show:main', new NewPostView({
-                collection: self.collection
-            }));
-        }
+        }    
     });
 
-    return BlogCompositeView;
+    return BlogCollectionView;
 });

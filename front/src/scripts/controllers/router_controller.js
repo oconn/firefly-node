@@ -6,12 +6,10 @@ define([
     'state',
     // Views,
     'views/home/index',
-    'views/blog/index',
+    'views/blog/layout',
     'views/blog/new',
     // Collections
-    'collections/posts',
-    // Models
-    'models/post'
+    'collections/posts'
 ], function(
     $,
     _,
@@ -23,9 +21,7 @@ define([
     BlogView,
     NewPostView,
     // Collections
-    PostsCollection,
-    // Models
-    PostModel
+    PostsCollection
 ) {
     "use strict";
 
@@ -42,9 +38,7 @@ define([
         },
 
         blog: function() {
-            state.vent.trigger('show:main', new BlogView({
-                collection: new PostsCollection()
-            }));
+            state.vent.trigger('show:main', new BlogView());
         },
 
         newPost: function() {
