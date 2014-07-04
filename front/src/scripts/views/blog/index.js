@@ -21,11 +21,11 @@ define([
 ) {
     "use strict";
 
-    var BlogCollectionView = Marionette.LayoutView.extend({
+    var BlogCollectionView = Marionette.CollectionView.extend({
         childView: PostItemView,    
 
         initialize: function() {
-            this.collection.fetch();
+
         }    
     });
 
