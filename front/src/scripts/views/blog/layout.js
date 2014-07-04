@@ -4,8 +4,8 @@ define([
     'backbone',
     'marionette',
     'templates/blog/layout',
-    'views/blog/post',
     'state',
+    'views/blog/index',
     'views/blog/new',
     'collections/posts',
     'models/post'
@@ -15,8 +15,8 @@ define([
     Backbone,
     Marionette,
     template,
-    PostItemView,
     state,
+    PostIndexView,
     NewPostView,
     PostsCollection,
     PostModel
@@ -27,7 +27,8 @@ define([
         template: template,
 
         regions: {
-            postList: '#post-list'
+            postList: '#post-list',
+            newPost: '#new-post'
         },
 
         events: {
@@ -35,16 +36,18 @@ define([
         },
 
         initialize: function() {
-        
+            this.postsCollection = new PostsCollection();
+            this.postsCollection.fetch();
         },
 
-        afterRender: function() {
-            this.postList.show()
+        onRender: function() {
+            var that = this;
+            this.postList.show(new PostIndexView({collection: that.postsCollection}));
         },
 
         showNew: function() {
-            var self = this;
-
+            var that = this;
+            this.newPost.show(new NewPostView({collection: that.postsCollection}));
         }
     });
 

@@ -6,7 +6,9 @@ define([
     'views/blog/index',
     'templates/blog/new',
     'models/post',
-    'state'
+    'state',
+    //
+    'marionette.formview'
 ], function(
     $,
     _,
@@ -19,20 +21,16 @@ define([
 ) {
     "use strict";
 
-    var NewPostItemView = Marionette.ItemView.extend({
+    var NewPostFormView = Marionette.FormView.extend({
         template: template,
 
         initialize: function() {
-            console.log(BlogView);
+            
         },
 
-        events: {
-            'submit #post-form': 'submit'
-        },
-
-        submit: function(e) {
+        onSubmit: function(e) {
+            console.log("dafds")
             e.preventDefault();
-            var self = this;
 
             var post = new PostModel({
                 title: this.$el.find("#title").val(),
@@ -40,13 +38,9 @@ define([
                 body: this.$el.find("#body").val()
             });
             
-            post.save();
-            console.log(BlogView)
-            state.vent.trigger('show:main', new BlogView({
-                collection: self.collection
-            }));
+            this.collection.add(post);
         }
     });
 
-    return NewPostItemView;
+    return NewPostFormView;
 });

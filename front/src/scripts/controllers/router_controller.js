@@ -18,7 +18,7 @@ define([
     state,
     // Views
     HomeView,
-    BlogView,
+    BlogLayout,
     NewPostView,
     // Collections
     PostsCollection
@@ -38,7 +38,7 @@ define([
         },
 
         blog: function() {
-            state.vent.trigger('show:main', new BlogView());
+            state.vent.trigger('show:main', new BlogLayout());
         },
 
         newPost: function() {

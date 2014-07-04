@@ -8,9 +8,13 @@ require.config({
         'marionette': path + '/packages/marionette/lib/core/backbone.marionette',
         'backbone.wreqr': path + '/packages/backbone.wreqr/lib/backbone.wreqr',
         'backbone.babysitter': path + '/packages/backbone.babysitter/lib/backbone.babysitter',
-        'handlebars':  path + '/scripts/handlebars'
+        'handlebars':  path + '/scripts/handlebars',
+        'marionette.formview': path + '/packages/marionette.formview/dist/FormView'
     },
     shim: {
+        'marionette.formview': {
+            deps: ['marionette']
+        },
         'jquery': {
             exports: '$'
         },
