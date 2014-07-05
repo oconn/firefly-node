@@ -36,6 +36,7 @@ define([
         },
 
         initialize: function() {
+            this.listenTo(this, 'newPost:postAdd', this.postAdd);
             this.postsCollection = new PostsCollection();
             this.postsCollection.fetch();
         },
