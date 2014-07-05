@@ -29,16 +29,27 @@ define([
         },
 
         onSubmit: function(e) {
-            console.log("dafds")
             e.preventDefault();
 
-            var post = new PostModel({
-                title: this.$el.find("#title").val(),
-                description: this.$el.find("#description").val(),
-                body: this.$el.find("#body").val()
-            });
+            // var post = new PostModel({
+            //     title: this.$el.find("#title").val(),
+            //     description: this.$el.find("#description").val(),
+            //     body: this.$el.find("#body").val()
+            // });
             
-            this.collection.add(post);
+            // this.collection.add(post);
+        },
+
+        fields: {
+            title: {
+                el: "#title"
+            },
+            description: {
+                el: "#description"
+            },
+            body: {
+                el: "#body"
+            }
         }
     });
 

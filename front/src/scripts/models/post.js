@@ -10,7 +10,8 @@ define([
     "use strict";
 
     var PostModel = Backbone.Model.extend({
-        urlRoot: 'api/posts' 
+        urlRoot: '/api/posts',
+        idAttribute: '_id'
     });
 
     return PostModel;

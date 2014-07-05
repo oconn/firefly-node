@@ -16,16 +16,16 @@ define([
     var PostItemView = Marionette.ItemView.extend({
         template: template,
 
-        events: {
-            'click .delete': 'removePost'
-        },
-
         initialize: function() {
-            
+            this.listenTo(this.model, 'change', this.render);
         },
 
-        removePost: function(e) {
-            
+        events: {
+            'click .delete': 'deletePost'
+        },
+
+        deletePost: function() {
+            this.trigger('deletePost', this.model);
         }
     });
 
