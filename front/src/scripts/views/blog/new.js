@@ -25,19 +25,7 @@ define([
         template: template,
 
         initialize: function() {
-            
-        },
 
-        onSubmit: function(e) {
-            e.preventDefault();
-
-            // var post = new PostModel({
-            //     title: this.$el.find("#title").val(),
-            //     description: this.$el.find("#description").val(),
-            //     body: this.$el.find("#body").val()
-            // });
-            
-            // this.collection.add(post);
         },
 
         fields: {
@@ -50,7 +38,23 @@ define([
             body: {
                 el: "#body"
             }
+        },
+
+        //custom validation rules
+        rules: {
+            
+        },
+
+        //handle successful submissions
+        onSubmit: function(evt) {
+            evt.preventDefault();
+        },
+
+        //handle validation failures
+        onSubmitFail: function(errors) {
+
         }
+
     });
 
     return NewPostFormView;
