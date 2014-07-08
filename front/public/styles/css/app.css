@@ -411,6 +411,39 @@ table {
   box-sizing: border-box;
 }
 
+.form {
+  width: 100%;
+}
+.form input,
+.form textarea,
+.form label,
+.form .form-title {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+}
+.form input[type=text],
+.form input[type=password],
+.form input[type=email] {
+  height: 2.2em;
+}
+.form input[type=submit] {
+  margin: 1em auto;
+  width: 50%;
+  min-width: 100px;
+  height: 2em;
+}
+.form .form-title {
+  margin: 1em auto;
+}
+.form label {
+  margin: 0.4em auto;
+  padding: 0px;
+}
+.form .form-error {
+  border: 1px solid red;
+}
+
 #top-nav {
   background-color: #9ca3a3;
   height: 100px;

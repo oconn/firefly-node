@@ -36,9 +36,16 @@ define([
         },
 
         initialize: function() {
-            this.listenTo(this, 'newPost:postAdd', this.postAdd);
+            var that = this;
+
             this.postsCollection = new PostsCollection();
             this.postsCollection.fetch();
+
+            this.newPost.on('show', function() {
+                this.currentView.on('close', function() {
+                    that.newPost.reset();
+                });
+            });
         },
 
         onRender: function() {
