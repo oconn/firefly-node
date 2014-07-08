@@ -28,31 +28,72 @@ define([
 
         },
 
+        events: {
+            'focus .form input': 'checkField',
+            'focus .form textarea': 'checkField'    
+        },
+
         fields: {
             title: {
-                el: "#title"
+                el: "#title",
+                required: "Please enter a title."
             },
             description: {
-                el: "#description"
+                el: "#description",
+                required: "Please enter a description."
             },
             body: {
-                el: "#body"
+                el: "#body",
+                required: "The blog post cannot be blank."
             }
         },
 
-        //custom validation rules
         rules: {
             
         },
 
-        //handle successful submissions
         onSubmit: function(evt) {
             evt.preventDefault();
+            var that = this;
+
+            var data = this.serializeFormData();
+            data.createdAt = Date.now();
+            
+            this.collection.create(data, {
+                success: function(model, res) {
+                    // MongoDB error code for duplicate
+                    // enteries. Titles cannot be the same
+                    if (res.error && res.error.code === 11000) {
+                        that.collection.models.shift();
+                        that.$el.find('.post-title').addClass('form-error').val('');
+                        that.$el.find('.post-title').attr('placeholder', 'Title has already been used');
+                    } else {
+                        $(that.el).slideUp(1000, function() {
+                            that.trigger('close');
+                        });
+                    }
+                },
+                error: function() {
+
+                }
+            });
         },
 
-        //handle validation failures
         onSubmitFail: function(errors) {
+            var that = this;
 
+            _.each(errors, function(error) {
+                var field = that.$el.find(error.el);
+                field.addClass('form-error');
+                field.attr('placeholder', error.error[0]);
+            });
+        },
+
+        checkField: function(evt) {
+            var field = $(evt.currentTarget);
+            if (field.hasClass('form-error')) {
+                field.removeClass('form-error');
+            }
         }
 
     });

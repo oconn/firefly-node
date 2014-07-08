@@ -39,12 +39,6 @@ define([
 
         blog: function() {
             state.vent.trigger('show:main', new BlogLayout());
-        },
-
-        newPost: function() {
-            state.vent.trigger('show:main', new NewPostView({
-                collection: new PostsCollection()
-            }));
         }
     });
 
