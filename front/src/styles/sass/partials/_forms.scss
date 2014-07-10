@@ -1,0 +1,38 @@
+.form {
+    width: 100%;
+    
+    input,
+    textarea,
+    label,
+    .form-title {
+        display: block;
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    input[type=text],
+    input[type=password],
+    input[type=email] {
+        height: 2.2em;
+    }
+
+    input[type=submit] {
+        margin: 1em auto;
+        width: 50%;
+        min-width: 100px;
+        height: 2em;
+    }
+
+    .form-title {
+        margin: 1em auto;
+    }
+
+    label {
+        margin: 0.4em auto;
+        padding: 0px;
+    }
+
+    .form-error {
+        border: 1px solid red;
+    }
+}

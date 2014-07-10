@@ -64,7 +64,6 @@ define([
                     // MongoDB error code for duplicate
                     // enteries. Titles cannot be the same
                     if (res.error && res.error.code === 11000) {
-                        that.collection.models.shift();
                         that.$el.find('.post-title').addClass('form-error').val('');
                         that.$el.find('.post-title').attr('placeholder', 'Title has already been used');
                     } else {
