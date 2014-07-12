@@ -7,7 +7,6 @@ define([
     // Views,
     'views/home/index',
     'views/blog/layout',
-    'views/blog/new',
     // Collections
     'collections/posts'
 ], function(
@@ -19,7 +18,6 @@ define([
     // Views
     HomeView,
     BlogLayout,
-    NewPostView,
     // Collections
     PostsCollection
 ) {
