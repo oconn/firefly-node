@@ -30,7 +30,8 @@ define([
 
         events: {
             'focus .form input': 'checkField',
-            'focus .form textarea': 'checkField'    
+            'focus .form textarea': 'checkField',
+            'submit .form': 'onSubmit'    
         },
 
         fields: {
