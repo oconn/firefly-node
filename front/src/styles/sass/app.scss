@@ -1,31 +1,10 @@
 @import 'normalize';
 
-$off-white: #E5F0F0;
-$light-blue: #2EA2A3;
-$dark-gray: #535757;
-$light-gray: #9CA3A3;
-$dark-blue: #4A7070;
+@import 'global';
+
+@import 'typography';
 
 @import 'partials/forms';
 @import 'partials/nav';
 @import 'partials/home';
 @import 'partials/blog';
-
-
-body {
-    background-color: $off-white;
-}
-
-a {
-    color: $dark-blue;
-    text-decoration: none;
-    // @include transition (color 0.6s ease-in-out);
-    &:hover {
-        color: $light-blue;
-    }
-}
-
-.container {
-    // @include fill-parent;
-}
-

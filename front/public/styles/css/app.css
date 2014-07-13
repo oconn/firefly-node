@@ -5,6 +5,7 @@
 /**
  * Correct `block` display not defined in IE 8/9.
  */
+@import url(http://fonts.googleapis.com/css?family=Raleway:100);
 article,
 aside,
 details,
@@ -405,101 +406,22 @@ table {
   border-spacing: 0;
 }
 
-.form {
-  width: 100%;
-}
-.form input,
-.form textarea,
-.form label,
-.form .form-title {
-  display: block;
-  margin: 0 auto;
-  width: 80%;
-}
-.form input[type=text],
-.form input[type=password],
-.form input[type=email] {
-  height: 2.2em;
-}
-.form input[type=submit] {
-  margin: 1em auto;
-  width: 50%;
-  min-width: 100px;
-  height: 2em;
-}
-.form .form-title {
-  margin: 1em auto;
-}
-.form label {
-  margin: 0.4em auto;
-  padding: 0px;
-}
-.form .form-error {
-  border: 1px solid red;
-}
-
-#top-nav {
-  background-color: #9ca3a3;
-  height: 100px;
-}
-
-#brand {
-  display: inline-table;
-  position: absolute;
-  left: 0px;
-}
-#brand a {
-  font-size: 20px;
-  padding: 0px 20px;
-  line-height: 100px;
-}
-
-.inline-links {
-  display: inline-table;
-  position: absolute;
-  right: 0px;
-}
-.inline-links ul {
-  margin: 0px;
-  list-style: none;
-}
-.inline-links ul li {
-  float: left;
-  display: inline;
-}
-.inline-links ul li:hover ul {
-  display: block;
-}
-.inline-links ul li ul {
-  position: absolute;
-  padding-left: 0px;
-  background-color: #9ca3a3;
-  display: none;
-}
-.inline-links ul li ul li {
-  float: inherit;
-  display: block;
-}
-.inline-links ul li ul li a {
-  line-height: 50px;
-}
-.inline-links ul a {
-  padding: 0px 20px;
-  line-height: 100px;
-}
-
-#post-form {
-  display: none;
-}
-
-body {
-  background-color: #e5f0f0;
-}
-
 a {
-  color: #4a7070;
   text-decoration: none;
+  color: #4499f5;
+  transition-duration: 1s;
 }
 a:hover {
-  color: #2ea2a3;
+  color: #3373b8;
+}
+
+.full-width {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: initial;
+}
+
+.form {
+  margin: 1em auto;
 }

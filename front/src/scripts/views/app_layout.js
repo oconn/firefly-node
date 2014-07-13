@@ -4,14 +4,19 @@ define([
     'backbone',
     'marionette',
     'templates/app_layout',
-    'state'
+    'state',
+
+    'fastclick',
+    'foundation.offcanvas'
 ], function(
     $,
     _,
     Backbone,
     Marionette,
     template,
-    state
+    state,
+
+    FastClick
 ) {
     "use strict";
 
@@ -22,14 +27,23 @@ define([
             main: "#main"
         },
 
+        events: {
+            'click .off-canvas-wrap': 'toggleNav'
+        },
+
         initialize: function() {
             this.listenTo(state.vent, 'show:main', this.showMain);
+        },
+
+        toggleNav: function() {
+            $('.off-canvas-wrap').foundation('offcanvas', 'open', 'move-right');
+            $('.off-canvas-wrap').foundation('offcanvas', 'close', 'move-right');
+            $('.off-canvas-wrap').foundation('offcanvas', 'toggle', 'move-right');
         },
 
         showMain: function(view) {
             this.main.show(view);
         }
-
     });
 
     return AppLayout;

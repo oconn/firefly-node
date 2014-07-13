@@ -121,7 +121,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'front/public/styles/css/app.css': 'front/src/styles/sass/app.scss',
-                    'front/public/styles/css/foundation.css': 'front/public/packages/foundation/scss/foundation.scss'
+                    'front/public/styles/css/foundation.css': 'front/src/styles/sass/foundation.scss'
                 }
             },
             dist: {

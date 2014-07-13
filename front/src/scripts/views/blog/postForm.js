@@ -8,7 +8,8 @@ define([
     'models/post',
     'state',
     //
-    'marionette.formview'
+    'marionette.formview',
+    'foundation.reveal'
 ], function(
     $,
     _,
@@ -31,7 +32,7 @@ define([
         events: {
             'focus .form input': 'checkField',
             'focus .form textarea': 'checkField',
-            'submit .form': 'onSubmit'    
+            'click .back': 'goBack'        
         },
 
         fields: {
@@ -65,10 +66,12 @@ define([
                     // MongoDB error code for duplicate
                     // enteries. Titles cannot be the same
                     if (res.error && res.error.code === 11000) {
-                        that.$el.find('.post-title').addClass('form-error').val('');
+                        that.$el.find('.post-title').addClass('error').val('');
+                        that.$el.find('.post-title').prev().addClass('error');
                         that.$el.find('.post-title').attr('placeholder', 'Title has already been used');
                     } else {
                         if (model.isNew()) {
+                            model.set('_id', true);
                             that.collection.unshift(model);
                         }
                         that.trigger('close:form');
@@ -85,16 +88,23 @@ define([
 
             _.each(errors, function(error) {
                 var field = that.$el.find(error.el);
-                field.addClass('form-error');
+                field.prev().addClass('error');
+                field.addClass('error');
                 field.attr('placeholder', error.error[0]);
             });
         },
 
         checkField: function(evt) {
             var field = $(evt.currentTarget);
-            if (field.hasClass('form-error')) {
-                field.removeClass('form-error');
+            if (field.hasClass('error')) {
+                field.removeClass('error');
+                field.prev().removeClass('error');
             }
+        },
+
+        goBack: function() {
+            $('#myModal').foundation('reveal', 'open');
+            this.trigger('close:form');    
         }
 
     });
