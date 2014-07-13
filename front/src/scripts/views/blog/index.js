@@ -3,29 +3,22 @@ define([
     'underscore',
     'backbone',
     'marionette',
-    'templates/blog/index',
-    'views/blog/post',
-    'state',
-    'views/blog/new',
-    'collections/posts'
+    'views/blog/post'
 ], function(
     $,
     _,
     Backbone,
     Marionette,
-    template,
-    PostItemView,
-    state,
-    NewPostView,
-    PostsCollection
+    PostView
 ) {
     "use strict";
 
-    var BlogCollectionView = Marionette.CollectionView.extend({
-        childView: PostItemView,    
+    var PostsCollectionView = Marionette.CollectionView.extend({        
+        childView: PostView,
 
         initialize: function() {
-            this.listenTo(this, 'childview:deletePost', this.deletePost);
+            this.listenTo(this, 'childview:delete:post', this.deletePost);
+            this.listenTo(this, 'childview:edit:post', this.editPost);
         },
 
         deletePost: function(cv, post) {
@@ -39,8 +32,13 @@ define([
                     }
                 });
             } 
+        },
+
+        editPost: function(cv, post) {
+            this.trigger('edit:post', {model: post});
         }
+
     });
 
-    return BlogCollectionView;
+    return PostsCollectionView;
 });

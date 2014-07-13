@@ -405,12 +405,6 @@ table {
   border-spacing: 0;
 }
 
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
 .form {
   width: 100%;
 }
@@ -494,6 +488,10 @@ table {
   line-height: 100px;
 }
 
+#post-form {
+  display: none;
+}
+
 body {
   background-color: #e5f0f0;
 }
@@ -501,14 +499,7 @@ body {
 a {
   color: #4a7070;
   text-decoration: none;
-  -webkit-transition: color 0.6s ease-in-out;
-  -moz-transition: color 0.6s ease-in-out;
-  transition: color 0.6s ease-in-out;
 }
 a:hover {
   color: #2ea2a3;
-}
-
-.container {
-  width: 100%;
 }

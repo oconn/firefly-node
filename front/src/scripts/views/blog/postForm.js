@@ -4,7 +4,7 @@ define([
     'backbone',
     'marionette',
     'views/blog/index',
-    'templates/blog/new',
+    'templates/blog/form',
     'models/post',
     'state',
     //
@@ -30,7 +30,8 @@ define([
 
         events: {
             'focus .form input': 'checkField',
-            'focus .form textarea': 'checkField'    
+            'focus .form textarea': 'checkField',
+            'submit .form': 'onSubmit'    
         },
 
         fields: {
@@ -58,22 +59,22 @@ define([
 
             var data = this.serializeFormData();
             data.createdAt = Date.now();
-            
-            this.collection.create(data, {
-                success: function(model, res) {
+
+            this.model.save(data, {
+                success: function(model, res, options) {
                     // MongoDB error code for duplicate
                     // enteries. Titles cannot be the same
                     if (res.error && res.error.code === 11000) {
-                        that.collection.models.shift();
                         that.$el.find('.post-title').addClass('form-error').val('');
                         that.$el.find('.post-title').attr('placeholder', 'Title has already been used');
                     } else {
-                        $(that.el).slideUp(1000, function() {
-                            that.trigger('close');
-                        });
+                        if (model.isNew()) {
+                            that.collection.unshift(model);
+                        }
+                        that.trigger('close:form');
                     }
                 },
-                error: function() {
+                error: function(model, response, options) {
 
                 }
             });

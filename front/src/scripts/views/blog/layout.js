@@ -4,22 +4,14 @@ define([
     'backbone',
     'marionette',
     'templates/blog/layout',
-    'state',
-    'views/blog/index',
-    'views/blog/new',
-    'collections/posts',
-    'models/post'
+    'views/blog/main'
 ], function(
     $,
     _,
     Backbone,
     Marionette,
     template,
-    state,
-    PostIndexView,
-    NewPostView,
-    PostsCollection,
-    PostModel
+    MainView
 ) {
     "use strict";
 
@@ -27,35 +19,15 @@ define([
         template: template,
 
         regions: {
-            postList: '#post-list',
-            newPost: '#new-post'
-        },
-
-        events: {
-            'click .create': 'showNew'
+            main: '#main'
         },
 
         initialize: function() {
-            var that = this;
-
-            this.postsCollection = new PostsCollection();
-            this.postsCollection.fetch();
-
-            this.newPost.on('show', function() {
-                this.currentView.on('close', function() {
-                    that.newPost.reset();
-                });
-            });
+            
         },
 
         onRender: function() {
-            var that = this;
-            this.postList.show(new PostIndexView({collection: that.postsCollection}));
-        },
-
-        showNew: function() {
-            var that = this;
-            this.newPost.show(new NewPostView({collection: that.postsCollection}));
+            this.main.show(new MainView());
         }
     });
 

@@ -21,11 +21,16 @@ define([
         },
 
         events: {
-            'click .delete': 'deletePost'
+            'click .delete': 'deletePost',
+            'click .edit': 'editPost'
         },
 
         deletePost: function() {
-            this.trigger('deletePost', this.model);
+            this.trigger('delete:post', this.model);
+        },
+
+        editPost: function() {
+            this.trigger('edit:post', this.model);
         }
     });
 

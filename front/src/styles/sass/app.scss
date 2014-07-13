@@ -1,8 +1,5 @@
 @import 'normalize';
 
-@import 'bourbon/bourbon';
-@import 'neat/neat';
-
 $off-white: #E5F0F0;
 $light-blue: #2EA2A3;
 $dark-gray: #535757;
@@ -22,13 +19,13 @@ body {
 a {
     color: $dark-blue;
     text-decoration: none;
-    @include transition (color 0.6s ease-in-out);
+    // @include transition (color 0.6s ease-in-out);
     &:hover {
         color: $light-blue;
     }
 }
 
 .container {
-    @include fill-parent;
+    // @include fill-parent;
 }
 

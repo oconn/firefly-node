@@ -2,6 +2,28 @@ var path = "../../../public";
 
 require.config({
     paths: {
+        // Foundation
+        // 'foundation.core': path + '/packages/foundation/js/foundation/foundation',
+        // 'foundation.reveal': path + '/packages/foundation/js/foundation/foundation.reveal',
+        // 'foundation.interchange': path + '/packages/foundation/js/foundation/foundation.interchange',
+        // 'foundation.abide': 'foundation/foundation.abide',
+        // 'foundation.accordion': 'foundation/foundation.accordion',
+        // 'foundation.alert': 'foundation/foundation.alert',
+        // 'foundation.clearing': 'foundation/foundation.clearing',
+        // 'foundation.dropdown': 'foundation/foundation.dropdown',
+        // 'foundation.equalizer': 'foundation/foundation.equalizer',
+        // 'foundation.joyride': 'foundation/foundation.joyride',
+        // 'foundation.magellan': 'foundation/foundation.magellan',
+        // 'foundation.offcanvas': 'foundation/foundation.offcanvas',
+        // 'foundation.orbit': 'foundation/foundation.orbit',
+        // 'foundation.tab': 'foundation/foundation.tab',
+        // 'foundation.tooltip': 'foundation/foundation.tooltip',
+        // 'foundation.topbar': 'foundation/foundation.topbar',
+
+        // 'fastclick': path + '/packages/foundation/js/vendor/fastclick',
+        // 'modernizr': path + '/packages/modernizr/modernizr',
+        // 'placeholder': 'vendor/placeholder'
+
         'jquery': path + '/packages/jquery/dist/jquery',
         'backbone': path + '/packages/backbone/backbone',
         'underscore': path + '/packages/underscore/underscore',
@@ -31,7 +53,30 @@ require.config({
         },
         'handlebars': {
             exports: 'Handlebars'
+        },
+        'fastclick': {
+            exports: 'FastClick'
+        },
+        'modernizr': {
+            exports: 'Modernizr'
         }
+        // 'foundation.core': {
+        //     deps: [
+        //     'jquery',
+        //     'modernizr'
+        //     ],
+        //     exports: 'Foundation'
+        // },
+        // 'foundation.reveal': {
+        //     deps: [
+        //     'foundation.core'
+        //     ]
+        // },
+        //  'foundation.interchange': {
+        //     deps: [
+        //     'foundation.core'
+        //     ]
+        // }
     }
 });
 
@@ -39,7 +84,7 @@ require([
     'app'
 ], function(App) {
     'use strict';
-    
+
     var app = new App();
 
     app.initialize();
