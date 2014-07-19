@@ -7,8 +7,7 @@ define([
     // Views,
     'views/home/index',
     'views/blog/layout',
-    // Collections
-    'collections/posts'
+    'views/gallery/layout'
 ], function(
     $,
     _,
@@ -18,8 +17,7 @@ define([
     // Views
     HomeView,
     BlogLayout,
-    // Collections
-    PostsCollection
+    GalleryLayout
 ) {
     "use strict";
 
@@ -37,6 +35,10 @@ define([
 
         blog: function() {
             state.vent.trigger('show:main', new BlogLayout());
+        },
+
+        gallery: function() {
+            state.vent.trigger('show:main', new GalleryLayout());
         }
     });
 

@@ -8,8 +8,7 @@ define([
     'models/post',
     'state',
     //
-    'marionette.formview',
-    'foundation.reveal'
+    'marionette.formview'
 ], function(
     $,
     _,

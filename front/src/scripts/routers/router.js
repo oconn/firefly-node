@@ -14,7 +14,8 @@ define([
     var AppRouter = Backbone.Marionette.AppRouter.extend({
         appRoutes: {
              "": "index",
-            "blog": "blog"
+            "blog": "blog",
+            "gallery": "gallery"
         },
         
         initialize: function(options) {

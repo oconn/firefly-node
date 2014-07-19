@@ -26,7 +26,7 @@ module.exports = {
                 return;
             }
 
-            res.json({success: "Post added"});
+            res.json({success: "Post Added"});
         });
     },
 
@@ -59,7 +59,7 @@ module.exports = {
                     return;
                 }
 
-                res.json({success: "Post updated"});
+                res.json({success: "Post Updated"});
             });
         });
     },

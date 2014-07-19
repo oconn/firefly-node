@@ -6,8 +6,7 @@ define([
     'templates/app_layout',
     'state',
 
-    'fastclick',
-    'foundation.offcanvas'
+    'fastclick'
 ], function(
     $,
     _,
@@ -33,12 +32,6 @@ define([
 
         initialize: function() {
             this.listenTo(state.vent, 'show:main', this.showMain);
-        },
-
-        toggleNav: function() {
-            $('.off-canvas-wrap').foundation('offcanvas', 'open', 'move-right');
-            $('.off-canvas-wrap').foundation('offcanvas', 'close', 'move-right');
-            $('.off-canvas-wrap').foundation('offcanvas', 'toggle', 'move-right');
         },
 
         showMain: function(view) {

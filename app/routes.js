@@ -1,5 +1,6 @@
 var usersController = require('./controllers/users');
 var postsController = require('./controllers/posts');
+var galleriesController = require('./controllers/galleries');
 
 var staticPagesController = require('./controllers/staticPages');
 var authentication = require('./controllers/authentication');
@@ -25,6 +26,12 @@ module.exports = function(app, passport) {
     app.put('/api/posts/:post_id', postsController.updatePost);
     app.del('/api/posts/:post_id', postsController.deletePost); 
 
+    //*********** GALLERIES ***********//
+    app.get('/api/galleries', galleriesController.getGalleries);
+    app.post('/api/galleries', galleriesController.addGallery);
+    app.get('/api/galleries/:gallery_id', galleriesController.getGallery);
+    app.put('/api/galleries/:gallery_id', galleriesController.updateGallery);
+    app.del('/api/galleries/:gallery_id', galleriesController.deleteGallery);
 
     // ************* AUTH ************ //
 

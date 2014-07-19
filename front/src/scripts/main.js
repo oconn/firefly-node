@@ -10,25 +10,7 @@ require.config({
         'backbone.babysitter': path + '/packages/backbone.babysitter/lib/backbone.babysitter',
         'handlebars':  path + '/scripts/handlebars',
         'marionette.formview': path + '/packages/marionette.formview/dist/FormView',
-
-        // Foundation
-        'foundation.core': path + '/packages/foundation/js/foundation/foundation',
-        'foundation.abide': path + '/packages/foundation/js/foundation/foundation.abide',
-        'foundation.accordion': path + '/packages/foundation/js/foundation/foundation.accordion',
-        'foundation.alert': path + '/packages/foundation/js/foundation/foundation.alert',
-        'foundation.clearing': path + '/packages/foundation/js/foundation/foundation.clearing',
-        'foundation.dropdown': path + '/packages/foundation/js/foundation/foundation.dropdown',
-        'foundation.equalizer': 'foundation/foundation.equalizer',
-        'foundation.interchange': path + '/packages/foundation/js/foundation/foundation.interchange',
-        'foundation.joyride': path + '/packages/foundation/js/foundation/foundation.joyride',
-        'foundation.magellan': path + '/packages/foundation/js/foundation/foundation.magellan',
-        'foundation.offcanvas':path + '/packages/foundation/js/foundation/foundation.offcanvas',
-        'foundation.orbit': path + '/packages/foundation/js/foundation/foundation.orbit',
-        'foundation.reveal': path + '/packages/foundation/js/foundation/foundation.reveal',
-        'foundation.tab': path + '/packages/foundation/js/foundation/foundation.tab',
-        'foundation.tooltip': path + '/packages/foundation/js/foundation/foundation.tooltip',
-        'foundation.topbar': path + '/packages/foundation/js/foundation/foundation.topbar',
-
+        
         // Vendor
         'jquery.cookie': path + '/packages/foundation/js/vendor/jquery.cookie',
         'fastclick': path + '/packages/foundation/js/vendor/fastclick',
@@ -46,9 +28,6 @@ require.config({
           deps : ['jquery', 'underscore'],
           exports : 'Backbone'
         },
-        'marionette.formview': {
-            deps: ['marionette']
-        },
         'marionette': {
           deps : ['jquery', 'underscore', 'backbone'],
           exports : 'Marionette'
@@ -56,92 +35,10 @@ require.config({
         'handlebars': {
             exports: 'Handlebars'
         },
+        'marionette.formview': {
+            deps: ['marionette']
+        },
         
-        /* Foundation */
-        'foundation.core': {
-            deps: [
-            'jquery',
-            'modernizr'
-            ],
-            exports: 'Foundation'
-        },
-        'foundation.abide': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-        'foundation.accordion': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-        'foundation.alert': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-        'foundation.clearing': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-        'foundation.dropdown': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-        'foundation.equalizer': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-        'foundation.interchange': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-        'foundation.joyride': {
-            deps: [
-            'foundation.core',
-            'foundation.cookie'
-            ]
-        },
-        'foundation.magellan': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-        'foundation.offcanvas': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-        'foundation.orbit': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-        'foundation.reveal': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-        'foundation.tab': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-        'foundation.tooltip': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-        'foundation.topbar': {
-            deps: [
-            'foundation.core'
-            ]
-        },
-
         /* Vendor Scripts */
         'jquery.cookie': {
             deps: [
