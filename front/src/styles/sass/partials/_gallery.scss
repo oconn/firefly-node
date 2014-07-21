@@ -1,0 +1,22 @@
+.images {
+    background-color: black;
+    display: block;
+    margin: 0 auto;
+    .img {
+        display: inline-block;
+        background-color: $lite-black;
+        height: 200px;
+        width: 200px;
+        position: relative;
+        img {
+            max-width: 150px;
+            max-height: 150px;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+}

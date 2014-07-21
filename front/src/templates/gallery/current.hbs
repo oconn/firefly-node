@@ -1,0 +1,10 @@
+<h1>{{title}}</h1>
+
+<div class="images">
+    {{#each images}}
+        <div class="img">
+            
+            <img src="{{this.url}}" alt="img-{{this.createdAt}}" />
+        </div>
+    {{/each}}
+</div>

@@ -425,3 +425,26 @@ a:hover {
 .form {
   margin: 1em auto;
 }
+
+.images {
+  background-color: black;
+  display: block;
+  margin: 0 auto;
+}
+.images .img {
+  display: inline-block;
+  background-color: #6e6e6e;
+  height: 200px;
+  width: 200px;
+  position: relative;
+}
+.images .img img {
+  max-width: 150px;
+  max-height: 150px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
