@@ -5,7 +5,8 @@ define([
     'marionette',
     'state',
     'templates/gallery/preview',
-    'templates/gallery/gallery'
+    'templates/gallery/gallery',
+    'socketio'
 ], function(
     $,
     _,
@@ -13,7 +14,8 @@ define([
     Marionette,
     state,
     galleryPreviewTemplate,
-    galleryGridTemplate
+    galleryGridTemplate,
+    io
 ) {
     "use strict";
 
@@ -35,43 +37,40 @@ define([
         template: galleryGridTemplate,
 
         initialize: function() {
-            this.collection.fetch();
+            this.collection.fetch();            
         },
 
         events: {
-            'submit #image-upload': 'uploadImage'
+            'submit #image-upload': 'uploadImages'
         },
 
-        uploadImage: function(e) {
+        uploadImages: function(e) {
             e.preventDefault();
+            var that = this;
+
+            this.$el.find('.upload-progress-bar').show();
+
+            var socket = io.connect('http://localhost:4000');
+
+            socket.on('uploadProgress', function(data) {
+                that.$el.find('progress').val(data);
+
+                if (data === 100) {
+                    that.finishedUpload();
+                }
+            }); 
 
             var formData = new FormData(e.currentTarget);
 
             var xhr = new XMLHttpRequest();
 
-            xhr.addEventListener("progress", this.updateProgress, false);
-            xhr.addEventListener("load", this.transferComplete, false);
-            xhr.addEventListener("error", this.transferFailed, false);
-            xhr.addEventListener("abort", this.transferCanceled, false);
-
             xhr.open('POST', '/api/galleries', true);
             xhr.send(formData);
         },
 
-        updateProgress: function(evt) {
-            // console.log(evt);
-        },
-
-        transferComelete: function() {
-
-        },
-
-        transferFailed: function() {
-
-        },
-
-        transferedCancled: function() {
-
+        finishedUpload: function() {
+            this.collection.fetch();
+            console.log(this.collection);
         }
     });
 

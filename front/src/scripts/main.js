@@ -15,7 +15,8 @@ require.config({
         'jquery.cookie': path + '/packages/foundation/js/vendor/jquery.cookie',
         'fastclick': path + '/packages/foundation/js/vendor/fastclick',
         'modernizr': path + '/packages/foundation/js/vendor/modernizr',
-        'placeholder': path + '/packages/foundation/js/vendor/placeholder'
+        'placeholder': path + '/packages/foundation/js/vendor/placeholder',
+        'socketio': path + '/scripts/socket.io-client/socket.io'
     },
     shim: {
         'jquery': {
@@ -23,6 +24,9 @@ require.config({
         },
         'underscore': {
             exports: '_'
+        },
+        'socketio': {
+          exports: 'io'
         },
         'backbone': {
           deps : ['jquery', 'underscore'],

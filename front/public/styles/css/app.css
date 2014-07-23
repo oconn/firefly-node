@@ -448,3 +448,8 @@ a:hover {
   right: 0;
   bottom: 0;
 }
+
+.upload-progress-bar {
+  display: none;
+  width: 100%;
+}

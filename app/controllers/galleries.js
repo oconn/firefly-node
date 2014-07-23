@@ -3,7 +3,12 @@ var Gallery = require('../models/gallery'),
     util = require('util'),
     fs = require('fs'),
     path = require('path'),
-    s3 = require('../../config/aws-config');
+    s3 = require('../../config/aws-config'),
+    io = require('socket.io').listen(4000);
+
+    io.on('connection', function(socket) {
+        socket.join('sessionId');
+    });
 
 module.exports = {
     getGalleries: function(req, res) {
@@ -27,19 +32,41 @@ module.exports = {
 
         var gallery = new Gallery();
 
-        form.on('progress', function() {
-            var progress = {
-                type: 'progress',
-                bytesReceived: bytesReceived,
-                bytesExpected: bytesExpected
-            };
+        form.on('progress', function(bytesReceived, bytesExpected) {
+            io.sockets.in('sessionId').emit('uploadProgress', (bytesReceived * 100) / bytesExpected);
+        });
 
-            socket.broadcast(JSON.stringify(progress));
+        form.on('fileBegin', function(name, file) {
+            
+        });
+
+        form.on('file', function(name, file) {
+            
+        });
+
+        form.on('error', function(err) {
+            // console.log(err);
+            // res.write('error');
+            // res.end();
+        });
+
+        form.on('aborted', function() {
+            
+            // res.write('upload aborted');
+        });
+
+
+        form.on('end', function() {
+
+            res.writeHead(200, {'content-type': 'text/plain'});
+            res.write('received upload');
+            res.end();
         });
 
         form.parse(req, function(err, fields, files) {
             if (err) {
-                res.send(err);
+                // console.log(err);
+                // res.send(err);
                 return;
             }
 
@@ -82,12 +109,10 @@ module.exports = {
 
             gallery.save(function(err) {
                 if (err) {
-                    res.send(err);
+                    console.log(err);
+                    // res.send(err);
                 }
 
-                res.writeHead(200, {'content-type': 'text/plain'});
-                res.write('received upload:\n\n');
-                res.end(util.inspect({fields: fields, files: files}));
             });
         });
 
