@@ -1,5 +1,5 @@
 var Gallery = require('../models/gallery'),
-    formidable = require('formidable'),
+    Formidable = require('formidable'),
     util = require('util'),
     fs = require('fs'),
     path = require('path'),
@@ -24,97 +24,108 @@ module.exports = {
 
     addGallery: function(req, res) {
 
-        var form = new formidable.IncomingForm();
+        var form = new Formidable.IncomingForm();
         form.maxFieldSize = 40 * 1024 * 1024;
         form.maxFields = 0;
         form.multiples = true;
         form.uploadDir = path.join(__dirname + '/../../uploads');
 
-        var gallery = new Gallery();
+        var gallery = new Gallery(),
+            fields = [],
+            files = [];
 
-        form.on('progress', function(bytesReceived, bytesExpected) {
-            io.sockets.in('sessionId').emit('uploadProgress', (bytesReceived * 100) / bytesExpected);
-        });
+        form
+            .on('progress', function(bytesReceived, bytesExpected) {
+                io.sockets.in('sessionId').emit('uploadProgress', (bytesReceived * 100) / bytesExpected);
+            })
 
-        form.on('fileBegin', function(name, file) {
-            
-        });
+            .on('fileBegin', function(name, file) {
+                
+            })
 
-        form.on('file', function(name, file) {
-            
-        });
+            .on('field', function(name, value) {
+                fields.push({name: name, value: value});
+            })
 
-        form.on('error', function(err) {
-            // console.log(err);
-            // res.write('error');
-            // res.end();
-        });
+            .on('file', function(name, file) {
+                files.push({name: name, file: file});
+            })
 
-        form.on('aborted', function() {
-            
-            // res.write('upload aborted');
-        });
+            .on('error', function(err) {
+               
+            })
 
+            .on('aborted', function() {
+                // res.write('upload aborted');
+            })
 
-        form.on('end', function() {
+            .on('end', function() {
+                processForm(fields, files);
 
-            res.writeHead(200, {'content-type': 'text/plain'});
-            res.write('received upload');
-            res.end();
-        });
+                res.writeHead(200, {'content-type': 'text/plain'});
+                res.write('received upload');
+                res.end();
+            });
 
         form.parse(req, function(err, fields, files) {
             if (err) {
-                // console.log(err);
-                // res.send(err);
+                
                 return;
             }
+        });
+    
+        function processForm(fields, files) {
+            gallery.title = fields[0].value.trim();
+            uploadImages(files, saveGallery);
+        }
 
-            gallery.title = fields.title;
+        function uploadImages(images, callback) {
+            var l = images.length;
+            var count = 0;
+            var that = this;
 
-            if( !util.isArray(files.images) ) {
-                // TODO Handle single image
-            } else {
-                files.images.forEach(function(file) {
-                    
-                    var bodyStream = fs.createReadStream(file.path);
-                    var filePath = gallery.title + '/' + file.name;
+            images.forEach(function(image) {
 
-                    s3.putObject({
-                        Bucket: 'firefly-node',
-                        Key: filePath,
-                        Body: bodyStream,
-                        ACL: 'public-read'
-                    }, function(error, data) {
-                        if (error) {
-                            // res.send(error);
-                        } 
-                        gallery.images.push({url: s3.endpoint.href + 'firefly-node/' + filePath});
+                var bodyStream = fs.createReadStream(image.file.path);
+                var filePath = gallery.title + '/' + image.file.name;
+                
+                gallery.images.push({url: s3.endpoint.href + 'firefly-node/' + filePath});
 
-                        gallery.save(function(err) {
-                            if (err) { 
 
-                            }
+                s3.putObject({
+                    Bucket: 'firefly-node',
+                    Key: filePath,
+                    Body: bodyStream,
+                    ACL: 'public-read'
+                }, function(error, data) {
+                    if (error) {
+                        // res.send(error);
+                    } 
 
-                            // Clean up filesystem after upload complete
-                            fs.unlink(file.path, function(err) {
-                                if (err) {
+                    count++;
+                    io.sockets.in('sessionId').emit('s3UploadProgress', (count / l) * 100);
 
-                                }
-                            });
-                        });
+                    // Clean up filesystem after upload complete
+                    fs.unlink(image.file.path, function(err) {
+                        if (err) {
+
+                        }
                     });
                 });
-            }
 
-            gallery.save(function(err) {
-                if (err) {
-                    console.log(err);
-                    // res.send(err);
-                }
 
             });
-        });
+
+            callback(gallery);
+        }
+
+        function saveGallery(model){
+            model.save(function(err){
+                if (err) {
+
+                }
+            }); 
+        }
 
     },
 

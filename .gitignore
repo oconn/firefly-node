@@ -7,3 +7,5 @@ front/src/scripts/templates
 config/aws-config.js
 
 uploads
+
+front/public/scripts/socket.io-client

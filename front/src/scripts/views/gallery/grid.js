@@ -38,6 +38,7 @@ define([
 
         initialize: function() {
             this.collection.fetch();            
+            this.socket = io.connect('http://localhost:4000');
         },
 
         events: {
@@ -48,17 +49,21 @@ define([
             e.preventDefault();
             var that = this;
 
+            var serverPercent = 0;
+            var s3Percent = 0;
+
             this.$el.find('.upload-progress-bar').show();
 
-            var socket = io.connect('http://localhost:4000');
 
-            socket.on('uploadProgress', function(data) {
-                that.$el.find('progress').val(data);
+            this.socket.on('uploadProgress', function(data) {
+                serverPercent = data;
+                that.updateProgressBar(serverPercent + s3Percent);
+            });
 
-                if (data === 100) {
-                    that.finishedUpload();
-                }
-            }); 
+            this.socket.on('s3UploadProgress', function(data) {
+                s3Percent = data;
+                that.updateProgressBar(serverPercent + s3Percent);
+            });
 
             var formData = new FormData(e.currentTarget);
 
@@ -68,9 +73,18 @@ define([
             xhr.send(formData);
         },
 
+        updateProgressBar: function(data) {
+            var progressBar = this.$el.find('.upload-progress-bar');
+
+            progressBar.val(data);
+
+            if (data === 200) {
+                this.finishedUpload();
+            }
+        },
+
         finishedUpload: function() {
             this.collection.fetch();
-            console.log(this.collection);
         }
     });
 

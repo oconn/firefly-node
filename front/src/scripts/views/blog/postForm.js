@@ -102,7 +102,6 @@ define([
         },
 
         goBack: function() {
-            $('#myModal').foundation('reveal', 'open');
             this.trigger('close:form');    
         }
 

@@ -22,16 +22,16 @@ define([
         },
 
         deletePost: function(cv, post) {
-            // if (confirm("Are you sure you want to delete this post?")) {
-            //     post.destroy({
-            //         success: function(model, res, options) {
+            if (confirm("Are you sure you want to delete this post?")) {
+                post.destroy({
+                    success: function(model, res, options) {
 
-            //         },
-            //         error: function(model, res, options) {
+                    },
+                    error: function(model, res, options) {
 
-            //         }
-            //     });
-            // } 
+                    }
+                });
+            } 
         },
 
         editPost: function(cv, post) {
